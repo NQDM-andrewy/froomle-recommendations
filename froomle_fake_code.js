@@ -20,30 +20,24 @@ function recordPageVisit() {
         setContextItemType();
     }
 
-    // detecting if userHasConsent ...
+    setConsent(2);
+    const channel = ''; // mobile or desktop 
+    setChannel(channel);
 
-    if (userHasConsent) {
-        setConsent(2);
-        const channel = ''; // mobile or desktop 
-        setChannel(channel);
+    // detecting if userIsLoggedIn ...
 
-        // detecting if userIsLoggedIn ...
+    if (userIsLoggedIn) {
 
-        if (userIsLoggedIn) {
+        // detecting if userSubscribed ...
 
-            // detecting if userSubscribed ...
-
-            if (userSubscribed) {
-                setUserId(data_layer.user.id);
-                setSubscriptionLevel('SUBSCRIBER');
-            } else {
-                setSubscriptionLevel('REGISTERED');
-            }
+        if (userSubscribed) {
+            setUserId(data_layer.user.id);
+            setSubscriptionLevel('SUBSCRIBER');
         } else {
-            setSubscriptionLevel('NONE');
+            setSubscriptionLevel('REGISTERED');
         }
     } else {
-        setConsent(0);
+        setSubscriptionLevel('NONE');
     }
 
     setPageVisit(pageType);
